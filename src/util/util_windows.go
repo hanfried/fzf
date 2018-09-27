@@ -26,12 +26,17 @@ func ExecCommandWith(_shell string, command string) *exec.Cmd {
 	return cmd
 }
 
+// KillCommand kills the process for the given command
+func KillCommand(cmd *exec.Cmd) error {
+	return cmd.Process.Kill()
+}
+
 // IsWindows returns true on Windows
 func IsWindows() bool {
 	return true
 }
 
-// SetNonBlock executes syscall.SetNonblock on file descriptor
+// SetNonblock executes syscall.SetNonblock on file descriptor
 func SetNonblock(file *os.File, nonblock bool) {
 	syscall.SetNonblock(syscall.Handle(file.Fd()), nonblock)
 }
